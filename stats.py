@@ -8,7 +8,7 @@ def get_num_words():
     num_words = 0
     for word in book_text.split():
         num_words += 1
-    print(f"{num_words} words found in the document")
+    print(f"Found {num_words} total words")
 
 def get_char_count():
     book_text = get_book_text("./books/frankenstein.txt").lower()
@@ -19,3 +19,19 @@ def get_char_count():
         else:
             num_chars[char] += 1
     return num_chars
+
+def sort_on(items):
+    return items["num"]
+
+def sort_char_count(char_count):
+    blank_char_count = []
+    for key in char_count:
+        #sorted_char_count[key] = char_count[key]
+        temp_dict = {}
+        if key.isalpha():
+            temp_dict["char"] = key
+            temp_dict["num"] = char_count[key]
+            blank_char_count.append(temp_dict)
+    blank_char_count.sort(key=sort_on, reverse=True)
+    return blank_char_count
+
